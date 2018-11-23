@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-
+plt.switch_backend('agg')
 
 def plot_learning_curve(learning_curve, model_info, export_path=None):
     """Plots the learning curve following `model_info`. Allows the option to export an SVG figure

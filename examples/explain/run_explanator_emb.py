@@ -8,10 +8,10 @@ from tools import train_test
 
 emb_import_paths = [
 #     "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/results/WN11/TransE/1527008113",
-    "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/results/FB13/TransE/1527033688",
-    "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/results/NELL186/TransE/1526711822",
+#    "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/results/FB13/TransE/1527033688",
+    "/home/andrey/proj/XKEc/results/FB13/TransE/1542997124",
 ]
-overalls_output_path = "~/WHI_overalls.tsv"
+overalls_output_path = "~/Andrey_tests.tsv"
 
 
 for path in emb_import_paths:

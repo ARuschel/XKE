@@ -32,7 +32,7 @@ def read_valid_and_test_data(dataset_path):
     test2id  = pd.concat((test2id_pos , test2id_neg ))
     return valid2id, test2id
 
-def read_generate_train_data(corrupted_filepath):
+def read_generate_train_data(corrupted_filepath, corrupted_dirpath, dataset_path, neg_rate, bern):
     """Generate/Read Training Negative Examples."""
     if not os.path.exists(corrupted_filepath):
         # create corrupted dirpath if not exist
@@ -178,7 +178,7 @@ def extract_features(emb_import_path, neg_rate, bern, feature_extractors, cuda_d
         pass # ideally we would call predict_G here, but we are doing it before calling this function
 
     # read data and metadata
-    train2id = read_generate_train_data(corrupted_filepath)
+    train2id = read_generate_train_data(corrupted_filepath, corrupted_dirpath,dataset_path, neg_rate, bern)
     valid2id, test2id = read_valid_and_test_data(dataset_path)
     entity2id, id2entity = dataset_tools.read_name2id_file(dataset_path + '/entity2id.txt')
     relation2id, id2relation = dataset_tools.read_name2id_file(dataset_path + '/relation2id.txt')
@@ -322,7 +322,7 @@ def extract_features(emb_import_path, neg_rate, bern, feature_extractors, cuda_d
 
 
     ## Extract Features
-    bash_command = '/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/tools/run_pra.sh {} {}'.format(pra_dir_path, spec_name)
+    bash_command = '/home/andrey/proj/XKEc/tools/run_pra.sh {} {}'.format(pra_dir_path, spec_name)
     n_runs = n_relations
     if data_to_use == 'onefold': n_runs *= 3
     for r in range(n_runs):
