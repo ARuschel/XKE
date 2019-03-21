@@ -23,9 +23,9 @@ train_test.grid_search([{
     # 'batch_size'                 : 2048,
     'n_batches'                  : 100, # number of batches
     'n_epochs'                   : 1000, # epochs
-    'learning_rate'              : [0.1, 0.01],
-    'k'                          : 20, # embedding dimension
-    'opt_method'                 : 'adagrad',
+    'learning_rate'              : 1,
+    'k'                          : 3, # embedding dimension
+    'opt_method'                 : 'RMSProp',
 
 
     ### OPTIONAL or MODEL DEPENDENT hyperparameters

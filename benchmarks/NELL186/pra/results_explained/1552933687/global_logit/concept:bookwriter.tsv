@@ -1,0 +1,15 @@
+weight	feature
+8.401535769244557	-concept:bookwriter-_concept:bookwriter-concept:bookwriter-
+4.449938932474186	-_concept:bookwriter-
+3.628662183537497	-concept:bookwriter-_concept:hashusband-concept:motherofperson-_concept:fatherofperson-
+3.628662183537497	-concept:bookwriter-_concept:hasspouse-concept:motherofperson-_concept:fatherofperson-
+3.628662183537497	-concept:bookwriter-concept:haswife-concept:motherofperson-_concept:fatherofperson-
+3.62254788605712	-concept:bookwriter-concept:fatherofperson-_concept:motherofperson-_concept:haswife-
+3.62254788605712	-concept:bookwriter-concept:fatherofperson-_concept:motherofperson-concept:hashusband-
+3.62254788605712	-concept:bookwriter-concept:fatherofperson-_concept:motherofperson-concept:hasspouse-
+3.32328498641072	-_concept:bookwriter-_concept:bookwriter-concept:bookwriter-
+3.32328498641072	-_concept:bookwriter-concept:bookwriter-concept:bookwriter-
+0.0	-concept:atlocation-_concept:automobilemakercardealersinstateorprovince-concept:automobilemakerdealersincity-_concept:writerwasbornincity-
+-0.9934122392060514	-concept:atlocation-concept:statelocatedingeopoliticallocation-_concept:sportfansincountry-_concept:athleteplayssport-
+-1.1357494148439808	-concept:athleteplayssport-_concept:teamplayssport-concept:organizationheadquarteredinstateorprovince-_concept:malemovedtostateorprovince-
+-1.959529103889704	-concept:bookwriter-concept:personmovedtostateorprovince-_concept:agriculturalproductgrowinginstateorprovince-concept:agriculturalproducttoattractinsect-

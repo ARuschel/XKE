@@ -7,10 +7,10 @@ from tools import train_test
 
 
 emb_import_paths = [
-    "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/benchmarks/FB13/",
-    "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/benchmarks/NELL186/",
+    "/home/andrey/proj/XKEc/benchmarks/NELL186" #,
+#    "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/benchmarks/NELL186/",
 ]
-overalls_output_path = "~/WHI_overalls_sfe.tsv"
+overalls_output_path = "Exploratory_phase_overalls.tsv"
 
 # Call special functions when running SFE for a dataset (and not to explain an Embedding Model)
 for path in emb_import_paths:

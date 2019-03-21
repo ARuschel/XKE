@@ -1,0 +1,11 @@
+weight	feature
+4.289258071357792	-concept:musicartistgenre-_concept:musicartistgenre-concept:musicartistgenre-
+2.224218456752498	-_concept:musicartistgenre-
+1.6431922205728688	-_concept:musicianinmusicartist-concept:musicianinmusicartist-concept:musicartistgenre-
+0.6973874915109932	-_concept:musicartistgenre-_concept:musicartistgenre-concept:musicartistgenre-
+0.14886714362719666	-_concept:musicartistgenre-concept:musicartistgenre-concept:musicartistgenre-
+-0.21335504533323596	-concept:musicianplaysinstrument-_concept:musicianinmusicartist-concept:musicartistgenre-
+-0.21335504533323596	-concept:musicianplaysinstrument-concept:musicianinmusicartist-concept:musicartistgenre-
+-0.2164348770869062	-concept:musicianinmusicartist-concept:musicartistgenre-_concept:musicartistgenre-concept:musicartistgenre-
+-0.23228911562126783	-concept:musicianinmusicartist-concept:musicartistgenre-
+-0.5346294313081087	-concept:musicianplaysinstrument-_concept:musicianplaysinstrument-concept:musicianinmusicartist-concept:musicartistgenre-

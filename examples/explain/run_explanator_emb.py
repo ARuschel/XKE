@@ -9,9 +9,9 @@ from tools import train_test
 emb_import_paths = [
 #     "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/results/WN11/TransE/1527008113",
 #    "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/results/FB13/TransE/1527033688",
-    "/home/andrey/proj/XKEc/results/FB13/TransE/1542997124",
+    "/home/andrey/proj/XKEc/results/NELL186/Analogy/1552996885",
 ]
-overalls_output_path = "~/Andrey_tests.tsv"
+overalls_output_path = "Exploratory_phase_overalls.tsv"
 
 
 for path in emb_import_paths:

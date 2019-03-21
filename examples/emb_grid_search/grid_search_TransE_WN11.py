@@ -17,20 +17,20 @@ train_test.grid_search([{
 
     ### NECESSARY hyperparameters
     ### -------------------------
-    'dataset_name'      : 'WN11',
+    'dataset_name'      : ['WN11', 'WN18', 'WN18RR'] ,
     'model_name'        : 'TransE',
 
     # 'batch_size'                 : 2048,
     'n_batches'                  : 100, # number of batches
     'n_epochs'                   : 1000, # epochs
-    'learning_rate'              : [0.01, 0.001, 0.1],
-    'k'                          : 20, # embedding dimension
+    'learning_rate'              : 1,
+    'k'                          : 3, # embedding dimension
     'opt_method'                 : 'RMSProp',
 
 
     ### OPTIONAL or MODEL DEPENDENT hyperparameters
     ### -------------------------------------------
-    'margin'                     : [4.0, 2.0],  # for most models
+    'margin'                     : 1,  # for most models
     'score_norm'                 : 'l1', # for TransX models
     # 'embedding_initialization'   : 'TransE/1524490825', # initialize parameters from another model
     # 'regul_weight'               : 0.001, # the regularization weight in the loss function

@@ -18,14 +18,14 @@ train_test.grid_search({
     ### NECESSARY hyperparameters
     ### -------------------------
     'dataset_name'      : ['FB15k'],
-    'model_name'        : "TransE",
+    'model_name'        : "TransH",
 
     # 'batch_size'                 : 2048,
     'n_batches'                  : 100, # number of batches
     'n_epochs'                   : 1000, # epochs
-    'learning_rate'              : [0.1, 0.01],
+    'learning_rate'              : 0.01,
     'k'                          : 50, # embedding dimension
-    'opt_method'                 : 'adagrad',
+    'opt_method'                 : 'RMSProp',
 
 
     ### OPTIONAL or MODEL DEPENDENT hyperparameters

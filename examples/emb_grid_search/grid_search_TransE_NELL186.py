@@ -23,9 +23,9 @@ train_test.grid_search([{
     # 'batch_size'                 : 2048,
     'n_batches'                  : 100, # number of batches
     'n_epochs'                   : 1000, # epochs
-    'learning_rate'              : [0.1, 0.01, 0.001],
-    'k'                          : 50, # embedding dimension
-    'opt_method'                 : 'RMSProp',
+    'learning_rate'              : [0.1],
+    'k'                          :  , # embedding dimension
+    'opt_method'                 : 'adadelta',
 
 
     ### OPTIONAL or MODEL DEPENDENT hyperparameters
@@ -56,7 +56,7 @@ train_test.grid_search([{
 
     ### GPU and CPU settings
     # 'work_threads'    : multiprocessing.cpu_count(), # (defaults to multiprocessing.cpu_count())
-    'cuda_device'     : 1, # (no default value -- not necessary)
+    #'cuda_device'     : 1, # (no default value -- not necessary)
 
     # notes
     'note': 'following NMM paper',

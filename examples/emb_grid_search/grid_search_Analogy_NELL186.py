@@ -22,7 +22,7 @@ train_test.grid_search([
 
         # 'batch_size'                 : 8192,
         'n_batches'                  : 10, # number of batches
-        'n_epochs'                   : 500, # epochs
+        'n_epochs'                   : 200, # epochs
         'learning_rate'              : 0.01,
         'k'                          : [100, 200], # embedding dimension
         'opt_method'                 : 'adagrad',
@@ -42,7 +42,7 @@ train_test.grid_search([
         ### negative examples and training settings
         'ent_neg_rate'               : 4, # (defaults to 1)
         'rel_neg_rate'               : 2, # (defaults to 0)
-        'bern'                       : 0, # (defaults to 1) Bernoulli distribution for generating negative training examples
+        'bern'                       : 1, # (defaults to 1) Bernoulli distribution for generating negative training examples
         # 'shuffle'                    : 1, # (defaults to 1) Shuffle training set (each epoch) instead of randomly sampling from it
 
         ### test settings
@@ -55,7 +55,7 @@ train_test.grid_search([
         # 'log_print'      : True, # (defaults to True)
 
         ### GPU and CPU settings
-        'work_threads'    : 4, # (defaults to multiprocessing.cpu_count())
+        #'work_threads'    : 4, # (defaults to multiprocessing.cpu_count())
         'cuda_device'     : 1, # (no default value -- not necessary)
 
 

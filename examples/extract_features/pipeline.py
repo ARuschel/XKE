@@ -46,6 +46,6 @@ def pipeline(emb_import_paths):
 emb_import_paths = [
 #    '/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/results/WN11/TransE/1527008113',
     #'/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/results/FB13/TransE/1527033688',
-    '/home/andrey/proj/XKEc/results/FB13/TransE/1542997124',
+    '/home/andrey/proj/XKEc/results/NELL186/Analogy/1552996885',
 ]
 pipeline(emb_import_paths)

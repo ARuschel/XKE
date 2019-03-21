@@ -5,11 +5,13 @@
 #       $ cd Projects/XKE
 #       $ python examples/emb_grid_search/grid_search_TransE_FB13.py
 #
-import os, sys
+
+import os
+import sys
+
 xke_root = os.path.abspath(os.path.join(__file__, "../../.."))
 sys.path.insert(0, xke_root)
 # --- end make file run from another dir ---
-
 
 from tools import train_test
 
@@ -20,18 +22,18 @@ train_test.grid_search({
     'dataset_name'      : 'FB13',
     'model_name'        : 'TransE',
 
-    # 'batch_size'                 : 2048,
-    'n_batches'                  : 100, # number of batches
-    'n_epochs'                   : 5, # epochs
-    'learning_rate'              : [0.001],
-    'k'                          : 10, # embedding dimension
-    'opt_method'                 : 'adam',
+    'batch_size'                 : 2048,
+    #'n_batches'                  : 100, # number of batches
+    'n_epochs'                   : [200, 5000], # epochs
+    'learning_rate'              : [0.1],
+    'k'                          : [100], # embedding dimension
+    'opt_method'                 : 'adadelta',
 
 
     ### OPTIONAL or MODEL DEPENDENT hyperparameters
     ### -------------------------------------------
     'margin'                     : 1.0,  # for most models
-    'score_norm'                 : 'l2', # for TransX models
+    'score_norm'                 : ['l1', 'l2'], # for TransX models
     # 'embedding_initialization'   : 'TransE/1524490825', # initialize parameters from another model
     # 'regul_weight'               : 0.001, # the regularization weight in the loss function
 
@@ -56,7 +58,7 @@ train_test.grid_search({
 
     ### GPU and CPU settings
     # 'work_threads'    : multiprocessing.cpu_count(), # (defaults to multiprocessing.cpu_count())
-    #'cuda_device'     : 0, # (no default value -- not necessary)
+    'cuda_device'     : 0, # (no default value -- not necessary)
 
     # notes
     'note': 'following NMM paper, no l2 constr in rel',
