@@ -18,4 +18,10 @@ for path in emb_import_paths:
 
 metrics_dicts = process_overall_metrics_wo_emb(emb_import_paths)
 
-pd.DataFrame(metrics_dicts).to_csv(overalls_output_path, sep='\t')
+exists = os.path.isfile(overalls_output_path)
+if exists:
+    df = pd.read_csv(overalls_output_path, sep='\t')
+    df = df.append(pd.DataFrame(metrics_dicts))
+    df.to_csv(overalls_output_path, sep='\t')
+else:
+    pd.DataFrame(metrics_dicts).to_csv(overalls_output_path, sep='\t')

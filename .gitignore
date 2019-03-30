@@ -137,4 +137,6 @@ venv.bak/
 *.py.bak
 
 # Results directory
-results/
+results/*
+.vscode/*
+benchmarks/
