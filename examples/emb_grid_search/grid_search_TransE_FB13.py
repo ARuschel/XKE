@@ -58,7 +58,7 @@ train_test.grid_search({
 
     ### GPU and CPU settings
     # 'work_threads'    : multiprocessing.cpu_count(), # (defaults to multiprocessing.cpu_count())
-    'cuda_device'     : 0, # (no default value -- not necessary)
+    #'cuda_device'     : 0, # (no default value -- not necessary)
 
     # notes
     'note': 'following NMM paper, no l2 constr in rel',
