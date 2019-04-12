@@ -7,7 +7,7 @@ from tools import train_test
 
 
 emb_import_paths = [
-    "/home/andrey/proj/XKEc/benchmarks/NELL186" #,
+    "/home/andrey/proj/XKEc/benchmarks/FB13/" #,
 #    "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/benchmarks/NELL186/",
 ]
 overalls_output_path = "Exploratory_phase_overalls.tsv"

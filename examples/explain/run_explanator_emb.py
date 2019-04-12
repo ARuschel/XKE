@@ -9,7 +9,7 @@ from tools import train_test
 emb_import_paths = [
 #     "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/results/WN11/TransE/1527008113",
 #    "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/results/FB13/TransE/1527033688",
-    "/home/andrey/proj/XKEc/results/NELL186/Analogy/1526567410_sfe_ar",
+    "/home/andrey/proj/XKEc/results/NELL186/Analogy/1904121223",
 ]
 overalls_output_path = "Exploratory_phase_overalls.tsv"
 
