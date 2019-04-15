@@ -7,11 +7,11 @@ from tools import train_test
 
 
 emb_import_paths = [
-#     "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/results/WN11/TransE/1527008113",
-#    "/home/arthurcgusmao/Projects/xkbc/algorithms/OpenKE/results/FB13/TransE/1527033688",
-    "/home/andrey/proj/XKEc/results/NELL186/Analogy/1904121223",
+    
+    "/home/andrey/proj/XKEc/results/FB13/TransE/1527033688",
+    "/home/andrey/proj/XKEc/results/FB13/Analogy/1539022851",
 ]
-overalls_output_path = "Exploratory_phase_overalls.tsv"
+overalls_output_path = "Overalls.tsv"
 
 
 for path in emb_import_paths:
@@ -20,9 +20,10 @@ for path in emb_import_paths:
 metrics_dicts = process_overall_metrics(emb_import_paths)
 
 exists = os.path.isfile(overalls_output_path)
+
 if exists:
     df = pd.read_csv(overalls_output_path, sep='\t')
-    df = df.append(pd.DataFrame(metrics_dicts))
+    df = df.append(pd.DataFrame(metrics_dicts), ignore_index=True)
     df.to_csv(overalls_output_path, sep='\t')
 else:
     pd.DataFrame(metrics_dicts).to_csv(overalls_output_path, sep='\t')
