@@ -8,8 +8,8 @@ from tools import train_test
 
 emb_import_paths = [
     
-    "/home/andrey/proj/XKEc/results/FB13/TransE/1527033688",
-    "/home/andrey/proj/XKEc/results/FB13/Analogy/1539022851",
+    "/home/andrey/proj/XKEc/results/FB13/TransE/1527033688"
+    #,"/home/andrey/proj/XKEc/results/FB13/Analogy/1539022851"
 ]
 overalls_output_path = "Overalls.tsv"
 

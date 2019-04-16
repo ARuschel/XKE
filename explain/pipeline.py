@@ -38,9 +38,9 @@ def pipeline(emb_model_path, splits=None, adapt_run_sfe_wo_emb=False):
 
     if not adapt_run_sfe_wo_emb:
         # instantiate Explanator for this model
-        expl = Explanator(emb_model_path, ground_truth_dataset_path)
+        expl = Explanator(emb_model_path, ground_truth_dataset_path, 1)
     else:
-        expl = Explanator(None, ground_truth_dataset_path)
+        expl = Explanator(None, ground_truth_dataset_path, 1)
 
     for split in splits:
         print "\n####\n{}\n####".format(emb_model_path)
