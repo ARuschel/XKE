@@ -9,7 +9,7 @@ class TransE(Model):
 		return abs(h + r - t)
 
 	def _calc_l2(self, h, t, r):
-		return (h + r - t)**2
+		return ((h + r - t)**2)
 
 	def embedding_def(self):
 		#Obtaining the initial configuration of the model

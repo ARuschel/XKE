@@ -8,11 +8,13 @@ from tools import train_test
 
 emb_import_paths = [
     
-    #"/home/andrey/proj/XKEc/results/FB13/TransE/1527033688_1904171027"
+    #"/home/andrey/proj/XKEc/results/FB13/TransE/1527033688_1904171027c"
     #,"/home/andrey/proj/XKEc/results/FB13/Analogy/1539022851"
     #'/home/andrey/proj/XKEc/results/NELL186/TransE/1526711822'
-    #'/home/andrey/proj/XKEc/results/NELL186/TransE/1526711822_1904171211'
-    '/home/andrey/proj/XKEc/results/FB13/TransE/1527033688_1904171559'
+    #'/home/andrey/proj/XKEc/results/NELL186/TransE/1526711822_1904171211b'
+    #'/home/andrey/proj/XKEc/results/FB13/TransE/1527033688_1904171559'
+    #'../../hdd/proj/XKEc/results/NELL186/TransE/1526711822_1904180912'
+    '/home/andrey/proj/XKEc/results/FB13/TransE/1527033688_1906172125'
 ]
 overalls_output_path = "Overalls.tsv"
 

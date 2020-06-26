@@ -55,8 +55,8 @@ train_test.grid_search([
         # 'log_print'      : True, # (defaults to True)
 
         ### GPU and CPU settings
-        'work_threads'    : 4, # (defaults to multiprocessing.cpu_count())
-        'cuda_device'     : 0, # (no default value -- not necessary)
+        #'work_threads'    : 4, # (defaults to multiprocessing.cpu_count())
+        #'cuda_device'     : 0, # (no default value -- not necessary)
 
 
         ### EXTRA information for model_info

@@ -452,6 +452,15 @@ class Config(object):
             thres_list.append(self.get_threshold_for_relation(r))
         return thres_list
 
+    def get_thresholds_dict(self, rels):
+        
+        self.calculate_thresholds()
+        unique_rels = np.unique(rels)
+        thres_dict = dict()
+        for r in unique_rels:
+            thres_dict[r] = self.get_threshold_for_relation(r)
+        
+        return thres_dict
 
     def setup_classify_graph(self, rels):
         """Returns the classification of a set of triples, using the validation threshold."""
@@ -481,9 +490,240 @@ class Config(object):
                 print("Classifying iteration {} of {}".format(i, total_iters))
                 start = (i) * batch_size
                 end = (i+1) * batch_size
-                res = tf.Session().run(self.classify_classes, feed_dict={
+                res = sess.run(self.classify_classes, feed_dict={
                     self.classify_scores: self.test_step(heads[start:end], tails[start:end], rels[start:end]).reshape(-1),
                     self.classify_relations: rels[start:end]
                 })
                 output = np.concatenate((output, res))
         return output
+
+    def calculate_true_triples(self, heads, tails, rels):
+
+        thresholds = self.get_thresholds_dict(rels)
+
+        res = np.squeeze(self.test_step(heads, tails, rels))
+
+        # thres_list = []
+        # for el in rels:
+        #     thres_list.append(thresholds[el])
+        # thres_list = np.array(thres_list)
+
+        # result = res - thres_list
+
+        # count = 0
+        # for i in range(len(result)):
+        #     if result[i] < 0:
+        #         count += 1
+        
+        return res  
+
+    def predict_triples(self, heads, tails, rels):
+
+        thresholds = self.get_thresholds_dict(rels)
+
+        res = np.squeeze(self.test_step(heads, tails, rels))
+
+        thres_list = []
+
+        for el in rels:
+            thres_list.append(thresholds[el])
+        thres_list = np.array(thres_list)
+
+        result = res - thres_list
+
+        predict = []
+        for i in range(len(result)):
+            if result[i] < 0:
+                predict.append(1)
+            else:
+                predict.append(0)
+        
+        return predict
+        
+
+    def init_triple_classification(self):
+		'''
+		import essential files and set essential interfaces for triple classification
+		'''
+		self.lib.importTestFiles()
+		self.lib.importTypeFiles()
+
+		self.test_pos_h = np.zeros(self.lib.getTestTotal(), dtype = np.int64)
+		self.test_pos_t = np.zeros(self.lib.getTestTotal(), dtype = np.int64)
+		self.test_pos_r = np.zeros(self.lib.getTestTotal(), dtype = np.int64)
+		self.test_neg_h = np.zeros(self.lib.getTestTotal(), dtype = np.int64)
+		self.test_neg_t = np.zeros(self.lib.getTestTotal(), dtype = np.int64)
+		self.test_neg_r = np.zeros(self.lib.getTestTotal(), dtype = np.int64)
+		self.test_pos_h_addr = self.test_pos_h.__array_interface__['data'][0]
+		self.test_pos_t_addr = self.test_pos_t.__array_interface__['data'][0]
+		self.test_pos_r_addr = self.test_pos_r.__array_interface__['data'][0]
+		self.test_neg_h_addr = self.test_neg_h.__array_interface__['data'][0]
+		self.test_neg_t_addr = self.test_neg_t.__array_interface__['data'][0]
+		self.test_neg_r_addr = self.test_neg_r.__array_interface__['data'][0]
+
+		self.valid_pos_h = np.zeros(self.lib.getValidTotal(), dtype = np.int64)
+		self.valid_pos_t = np.zeros(self.lib.getValidTotal(), dtype = np.int64)
+		self.valid_pos_r = np.zeros(self.lib.getValidTotal(), dtype = np.int64)
+		self.valid_neg_h = np.zeros(self.lib.getValidTotal(), dtype = np.int64)
+		self.valid_neg_t = np.zeros(self.lib.getValidTotal(), dtype = np.int64)
+		self.valid_neg_r = np.zeros(self.lib.getValidTotal(), dtype = np.int64)
+		self.valid_pos_h_addr = self.valid_pos_h.__array_interface__['data'][0]
+		self.valid_pos_t_addr = self.valid_pos_t.__array_interface__['data'][0]
+		self.valid_pos_r_addr = self.valid_pos_r.__array_interface__['data'][0]
+		self.valid_neg_h_addr = self.valid_neg_h.__array_interface__['data'][0]
+		self.valid_neg_t_addr = self.valid_neg_t.__array_interface__['data'][0]
+		self.valid_neg_r_addr = self.valid_neg_r.__array_interface__['data'][0]
+		self.relThresh = np.zeros(self.lib.getRelationTotal(), dtype = np.float32)
+		self.relThresh_addr = self.relThresh.__array_interface__['data'][0]
+
+
+    def init_link_prediction(self):
+		'''
+		import essential files and set essential interfaces for link prediction
+		'''
+		self.lib.importTestFiles()
+		self.lib.importTypeFiles()
+		self.test_h = np.zeros(self.lib.getEntityTotal(), dtype = np.int64)
+		self.test_t = np.zeros(self.lib.getEntityTotal(), dtype = np.int64)
+		self.test_r = np.zeros(self.lib.getEntityTotal(), dtype = np.int64)
+		self.test_h_addr = self.test_h.__array_interface__['data'][0]
+		self.test_t_addr = self.test_t.__array_interface__['data'][0]
+		self.test_r_addr = self.test_r.__array_interface__['data'][0]
+
+    def predict_head_entity(self, t, r, k):
+		'''This mothod predicts the top k head entities given tail entity and relation.
+		
+		Args: 
+			t (int): tail entity id
+			r (int): relation id
+			k (int): top k head entities
+		
+		Returns:
+			list: k possible head entity ids 	  	
+		'''
+		self.init_link_prediction()
+		if self.importName != None:
+			self.restore_tensorflow()
+		test_h = np.array(range(self.entTotal))
+		test_r = np.array([r] * self.entTotal)
+		test_t = np.array([t] * self.entTotal)
+		res = self.test_step(test_h, test_t, test_r).reshape(-1).argsort()[:k]
+		print(res)
+		return res
+
+    def predict_tail_entity(self, h, r, k):
+		'''This mothod predicts the top k tail entities given head entity and relation.
+		
+		Args: 
+			h (int): head entity id
+			r (int): relation id
+			k (int): top k tail entities
+		
+		Returns:
+			list: k possible tail entity ids 	  	
+		'''
+		self.init_link_prediction()
+		if self.importName != None:
+			self.restore_tensorflow()
+		test_h = np.array([h] * self.entTotal)
+		test_r = np.array([r] * self.entTotal)
+		test_t = np.array(range(self.entTotal))
+		res = self.test_step(test_h, test_t, test_r).reshape(-1).argsort()[:k]
+
+		return res
+
+    def get_true_tails(self, h, r, t, threshold, k):
+        
+        #self.init_link_prediction()
+        
+        if self.importName != None:
+            self.restore_tensorflow()
+            
+        test_h = np.array([h] * self.entTotal)
+        test_r = np.array([r] * self.entTotal)
+        test_t = np.array(range(self.entTotal))
+        res = np.squeeze(self.test_step(test_h, test_t, test_r).reshape(-1))#.argsort()[:k]
+        true_triples = (res < threshold).sum()
+        res = list(res.argsort()[:k])
+        
+        return res.index(t)+1, true_triples
+
+    def get_true_heads(self, t, r, h, threshold, k):
+        
+        if self.importName != None:
+            self.restore_tensorflow()
+        test_h = np.array(range(self.entTotal))
+        test_r = np.array([r] * self.entTotal)
+        test_t = np.array([t] * self.entTotal)
+        res = np.squeeze(self.test_step(test_h, test_t, test_r).reshape(-1))
+
+        true_triples = (res < threshold).sum()
+        res = list(res.argsort()[:k])
+        
+        return res.index(h)+1, true_triples        
+
+    def predict_relation(self, h, t, k):
+		'''This methods predict the relation id given head entity and tail entity.
+		
+		Args:
+			h (int): head entity id
+			t (int): tail entity id
+			k (int): top k relations
+		
+		Returns:
+			list: k possible relation ids
+		'''
+		self.init_link_prediction()
+		if self.importName != None:
+			self.restore_tensorflow()
+		test_h = np.array([h] * self.relTotal)
+		test_r = np.array(range(self.relTotal))
+		test_t = np.array([t] * self.relTotal)
+		res = self.test_step(test_h, test_t, test_r).reshape(-1).argsort()[:k]
+		print(res)
+		return res
+    
+    def predict_triple(self, h, t, r, thresh = None):
+        '''This method tells you whether the given triple (h, t, r) is correct of wrong
+	
+		Args:
+			h (int): head entity id
+			t (int): tail entity id
+			r (int): relation id
+			thresh (fload): threshold for the triple
+		'''
+        self.init_triple_classification()
+    
+        if self.importName != None:
+            self.restore_tensorflow()
+        
+        res = self.test_step(np.array([h]), np.array([t]), np.array([r]))
+        
+        if thresh != None:
+            # print('Threshold of {} has been provided.'.format(thresh))
+            # print('res is {}'.format(res))
+            if res < thresh:
+                # print("triple (%d,%d,%d) is correct" % (h, t, r))
+                answer = 1
+            else:
+                # print("triple (%d,%d,%d) is wrong" % (h, t, r))
+                answer = 0
+                
+            return answer
+        
+        self.lib.getValidBatch(self.valid_pos_h_addr, self.valid_pos_t_addr, self.valid_pos_r_addr, self.valid_neg_h_addr, self.valid_neg_t_addr, self.valid_neg_r_addr)
+        res_pos = self.test_step(self.valid_pos_h, self.valid_pos_t, self.valid_pos_r)
+        res_neg = self.test_step(self.valid_neg_h, self.valid_neg_t, self.valid_neg_r)
+        self.lib.getBestThreshold(self.relThresh_addr, res_pos.__array_interface__['data'][0], res_neg.__array_interface__['data'][0])
+    
+        # print('No threshold has been provided, the calculated value is {}'.format(self.relThresh[r]))
+        # print('res is {}'.format(res))
+
+        if res < self.relThresh[r]:
+            # print("triple (%d,%d,%d) is correct" % (h, t, r))
+            answer = 1
+        else:
+            # print("triple (%d,%d,%d) is wrong" % (h, t, r))
+            answer = 0
+
+        return answer

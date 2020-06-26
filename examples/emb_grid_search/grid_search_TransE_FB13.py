@@ -22,18 +22,18 @@ train_test.grid_search({
     'dataset_name'      : 'FB13',
     'model_name'        : 'TransE',
 
-    'batch_size'                 : 2048,
-    #'n_batches'                  : 100, # number of batches
-    'n_epochs'                   : [200, 5000], # epochs
+    #'batch_size'                 : 2048,
+    'n_batches'                  : 100, # number of batches
+    'n_epochs'                   : [100], # epochs
     'learning_rate'              : [0.1],
-    'k'                          : [100], # embedding dimension
+    'k'                          : [50], # embedding dimension
     'opt_method'                 : 'adadelta',
 
 
     ### OPTIONAL or MODEL DEPENDENT hyperparameters
     ### -------------------------------------------
     'margin'                     : 1.0,  # for most models
-    'score_norm'                 : ['l1', 'l2'], # for TransX models
+    'score_norm'                 : ['l1'], # for TransX models
     # 'embedding_initialization'   : 'TransE/1524490825', # initialize parameters from another model
     # 'regul_weight'               : 0.001, # the regularization weight in the loss function
 
@@ -42,7 +42,7 @@ train_test.grid_search({
     ### ----------------------------------
 
     ### negative examples and training settings
-    # 'ent_neg_rate'               : 1, # (defaults to 1)
+    'ent_neg_rate'               : 3, # (defaults to 1)
     # 'rel_neg_rate'               : 0, # (defaults to 0)
     # 'bern'                       : 1, # (defaults to 1) Bernoulli distribution for generating negative training examples
     # 'shuffle'                    : 1, # (defaults to 1) Shuffle training set (each epoch) instead of randomly sampling from it
@@ -61,5 +61,5 @@ train_test.grid_search({
     #'cuda_device'     : 0, # (no default value -- not necessary)
 
     # notes
-    'note': 'following NMM paper, no l2 constr in rel',
+    'note': 'reviwed l2 norm function',
 })

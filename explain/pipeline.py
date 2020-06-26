@@ -62,7 +62,7 @@ def pipeline(emb_model_path, splits=None, adapt_run_sfe_wo_emb=False):
                 # global logit
                 expl.train_global_logit()
                 expl.explain_model(output_path=output_path)
-                # expl.explain_per_example(output_path)
+                expl.explain_per_example(output_path)
                 results.append(calc_metrics(expl))
 
                 # global regression
